@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView, View, Text, Image} from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -15,9 +15,12 @@ const Home = () => {
         globalStyle.flex,
         style.paddingHorizontal,
       ]}>
-      <View style={style.marginTop}>
-        <Text>Hello,</Text>
-        <Header title={'Azzari A.'} />
+      <View style={[style.marginTop, style.header]}>
+        <View>
+          <Text>Hello,</Text>
+          <Header title={'Azzari A.👋'} />
+        </View>
+        <Image source={require('../../assets/images/Robot-Head.png')} />
       </View>
       <View style={style.marginTop}>
         <Search

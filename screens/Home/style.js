@@ -6,6 +6,10 @@ const style = StyleSheet.create({
   marginTop: {
     marginTop: verticalScale(20),
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export default style;
