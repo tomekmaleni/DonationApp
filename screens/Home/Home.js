@@ -9,7 +9,11 @@ import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 
+import {useSelector} from 'react-redux';
+
 const Home = () => {
+  const user = useSelector(state => state.user);
+
   return (
     <SafeAreaView
       style={[
@@ -20,7 +24,10 @@ const Home = () => {
       <View style={[style.marginTop, style.header]}>
         <View>
           <Text>Hello,</Text>
-          <Header title={'Azzari A.👋'} color={'#022150'} />
+          <Header
+            title={user.firstName + ' ' + user.lastName.charAt(0) + '.👋'}
+            color={'#022150'}
+          />
         </View>
         <Image
           width={horizontalScale(50)}
