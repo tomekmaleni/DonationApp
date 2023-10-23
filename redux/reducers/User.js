@@ -18,4 +18,4 @@ export const User = createSlice({
 
 export const {updateFirstName} = User.actions;
 
-export default User;
+export default User.reducer;
