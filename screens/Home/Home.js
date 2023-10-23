@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, Text, Image} from 'react-native';
+import {SafeAreaView, View, Text, Image, Pressable} from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -9,10 +9,12 @@ import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {updateFirstName} from '../../redux/reducers/User';
 
 const Home = () => {
   const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView
@@ -34,6 +36,10 @@ const Home = () => {
           source={require('../../assets/images/Robot-Head.png')}
         />
       </View>
+      <Pressable
+        onPress={() => dispatch(updateFirstName({firstName: 'Azzahri'}))}>
+        <Text>Press Me to change first name</Text>
+      </Pressable>
       <View style={style.marginTop}>
         <Search
           onSearch={value => {
