@@ -16,11 +16,12 @@ import Search from '../../components/Search/Search';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {updateFirstName} from '../../redux/reducers/User';
-// import {resetToInitialState} from '../../redux/reducers/User';
+import {resetToInitialState, updateFirstName} from '../../redux/reducers/User';
 
 const Home = () => {
   const user = useSelector(state => state.user);
+  const categories = useSelector(state => state.categories);
+
   const dispatch = useDispatch();
   // dispatch(resetToInitialState());
 
