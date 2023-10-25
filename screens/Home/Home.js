@@ -1,9 +1,15 @@
 import React from 'react';
-import {SafeAreaView, View, Text, Image, Pressable} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  Image,
+  Pressable,
+} from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
-import {horizontalScale} from '../../assets/styles/scaling';
 
 import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
@@ -11,10 +17,12 @@ import SingleDonationItem from '../../components/SingleDonationItem/SingleDonati
 
 import {useSelector, useDispatch} from 'react-redux';
 import {updateFirstName} from '../../redux/reducers/User';
+// import {resetToInitialState} from '../../redux/reducers/User';
 
 const Home = () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  // dispatch(resetToInitialState());
 
   return (
     <SafeAreaView
@@ -23,48 +31,54 @@ const Home = () => {
         globalStyle.flex,
         style.paddingHorizontal,
       ]}>
-      <View style={[style.marginTop, style.header]}>
-        <View>
-          <Text>Hello,</Text>
-          <Header
-            title={user.firstName + ' ' + user.lastName.charAt(0) + '.👋'}
-            color={'#022150'}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[style.marginTop, style.header]}>
+          <View>
+            <Text style={style.headerIntroText}>Hello, </Text>
+            <Header
+              title={user.firstName + ' ' + user.lastName[0] + '.👋'}
+              color={'#022150'}
+            />
+          </View>
+          <Image
+            style={style.profileImage}
+            source={{uri: user.profileImage}}
+            resizeMode={'contain'}
           />
         </View>
-        <Image
-          width={horizontalScale(50)}
-          source={require('../../assets/images/Robot-Head.png')}
-        />
-      </View>
-      <Pressable
-        onPress={() => dispatch(updateFirstName({firstName: 'Azzahri'}))}>
-        <Text>Press Me to change first name</Text>
-      </Pressable>
-      <View style={style.marginTop}>
-        <Search
-          onSearch={value => {
-            console.log(value);
-          }}
-        />
-      </View>
-      <View style={[style.marginTop, style.donations]}>
-        <SingleDonationItem
-          uri={
-            'https://img.pixers.pics/pho_wat(s3:700/FO/44/24/64/31/700_FO44246431_ab024cd8251bff09ce9ae6ecd05ec4a8.jpg,525,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,305,650,jpg)/stickers-cactus-cartoon-illustration.jpg.jpg'
-          }
-          badgeTitle={'Enviroment'}
-          donationTitle={'Tree Cactus Imitation'}
-          price={44}
-        />
-        <SingleDonationItem
-          uri={
-            'https://img.pixers.pics/pho_wat(s3:700/FO/44/24/64/31/700_FO44246431_ab024cd8251bff09ce9ae6ecd05ec4a8.jpg,525,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,305,650,jpg)/stickers-cactus-cartoon-illustration.jpg.jpg'
-          }
-          badgeTitle={'Enviroment'}
-          donationTitle={'Tree Cactus Imitation'}
-          price={44}
-        />
-      </View>
+        <View style={style.marginTop}>
+          <Search
+            onSearch={value => {
+              // console.log(value);
+            }}
+          />
+        </View>
+        <Pressable style={style.marginTop}>
+          <Image
+            style={style.highlightedImage}
+            source={require('../../assets/images/highlighted_image.png')}
+            resizeMode={'contain'}
+          />
+        </Pressable>
+        <View style={[style.marginTop, style.donations]}>
+          <SingleDonationItem
+            uri={
+              'https://img.pixers.pics/pho_wat(s3:700/FO/44/24/64/31/700_FO44246431_ab024cd8251bff09ce9ae6ecd05ec4a8.jpg,525,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,305,650,jpg)/stickers-cactus-cartoon-illustration.jpg.jpg'
+            }
+            badgeTitle={'Enviroment'}
+            donationTitle={'Tree Cactus Imitation'}
+            price={44}
+          />
+          <SingleDonationItem
+            uri={
+              'https://img.pixers.pics/pho_wat(s3:700/FO/44/24/64/31/700_FO44246431_ab024cd8251bff09ce9ae6ecd05ec4a8.jpg,525,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,305,650,jpg)/stickers-cactus-cartoon-illustration.jpg.jpg'
+            }
+            badgeTitle={'Enviroment'}
+            donationTitle={'Tree Cactus Imitation'}
+            price={44}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
