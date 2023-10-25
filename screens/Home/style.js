@@ -7,11 +7,9 @@ import {
 import {getFontFamily} from '../../assets/fonts/helper';
 
 const style = StyleSheet.create({
-  paddingHorizontal: {
-    paddingHorizontal: horizontalScale(24),
-  },
-  marginTop: {
+  section: {
     marginTop: verticalScale(20),
+    marginHorizontal: horizontalScale(24),
   },
   header: {
     flexDirection: 'row',
@@ -32,6 +30,12 @@ const style = StyleSheet.create({
   highlightedImage: {
     width: '100%',
     height: verticalScale(160),
+  },
+  categories: {
+    marginTop: verticalScale(16),
+  },
+  categoryItem: {
+    marginRight: horizontalScale(10),
   },
   donations: {
     flexDirection: 'row',
