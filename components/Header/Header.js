@@ -25,7 +25,7 @@ const Header = props => {
   );
 };
 
-Header.default = {
+Header.defaultProps = {
   title: '',
   type: 1,
   color: '#022150',
