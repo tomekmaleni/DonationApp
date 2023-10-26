@@ -37,7 +37,7 @@ const style = StyleSheet.create({
   categoryItem: {
     marginRight: horizontalScale(10),
   },
-  donations: {
+  donationItemsContainer: {
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',

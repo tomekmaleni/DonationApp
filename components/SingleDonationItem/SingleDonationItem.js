@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image} from 'react-native';
+import {Pressable, View, Image} from 'react-native';
 import PropTypes from 'prop-types';
 
 import style from './style';
@@ -9,7 +9,10 @@ import Header from '../Header/Header';
 
 const SingleDonationItem = props => {
   return (
-    <View>
+    <Pressable
+      onPress={() => {
+        props.onPress(props.donationItemId);
+      }}>
       <View>
         <View style={style.badge}>
           <Badge title={props.badgeTitle} />
@@ -17,7 +20,7 @@ const SingleDonationItem = props => {
         <Image
           style={style.image}
           source={{uri: props.uri}}
-          resizeMode={'contain'}
+          resizeMode={'cover'}
         />
       </View>
       <View style={style.donationInformation}>
@@ -30,13 +33,19 @@ const SingleDonationItem = props => {
           />
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
+SingleDonationItem.defaultProps = {
+  onPress: () => {},
+};
+
 SingleDonationItem.propTypes = {
-  uri: PropTypes.string.isRequired,
+  onPress: PropTypes.func,
+  donationItemId: PropTypes.number.isRequired,
   badgeTitle: PropTypes.string.isRequired,
+  uri: PropTypes.string.isRequired,
   donationTitle: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 };

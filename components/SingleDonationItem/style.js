@@ -11,6 +11,7 @@ const style = StyleSheet.create({
   image: {
     width: horizontalScale(155),
     height: verticalScale(170),
+    borderRadius: horizontalScale(20),
   },
   donationInformation: {
     marginTop: verticalScale(16),
