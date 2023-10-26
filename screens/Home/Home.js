@@ -23,14 +23,17 @@ import {
   // resetCategories,
   updateSelectedCategoryId,
 } from '../../redux/reducers/Categories';
+// import {resetDonations} from '../../redux/reducers/Donations';
 
 const Home = () => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
+  const donations = useSelector(state => state.donations);
 
   const dispatch = useDispatch();
   // dispatch(resetToInitialState());
   // dispatch(resetCategories());
+  // dispatch(resetDonations());
 
   const categoryPageSize = 4;
   const [categoryCurrentPage, setCategoryCurrentPage] = useState(1);
