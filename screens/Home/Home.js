@@ -40,6 +40,8 @@ const Home = () => {
   const [categoryRenderedList, setCategoryRenderedList] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
 
+  const [donationRenderedItems, setDonationRenderedItems] = useState([]);
+
   const pagination = (database, currentPage, pageSize) => {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
@@ -60,6 +62,13 @@ const Home = () => {
     setCategoryCurrentPage(prev => prev + 1);
     setIsLoadingCategories(false);
   }, []);
+
+  useEffect(() => {
+    const filteredItems = donations.items.filter(item =>
+      item.categoryIds.includes(categories.selectedCategoryId),
+    );
+    setDonationRenderedItems(filteredItems);
+  }, [categories.selectedCategoryId]);
 
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
