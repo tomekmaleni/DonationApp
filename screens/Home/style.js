@@ -38,8 +38,10 @@ const style = StyleSheet.create({
     marginRight: horizontalScale(10),
   },
   donations: {
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
 });
 
