@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,8 +18,11 @@ import SingleDonationItem from '../../components/SingleDonationItem/SingleDonati
 import Tab from '../../components/Tab/Tab';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {resetToInitialState, updateFirstName} from '../../redux/reducers/User';
-import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
+// import {resetToInitialState, updateFirstName} from '../../redux/reducers/User';
+import {
+  // resetCategories,
+  updateSelectedCategoryId,
+} from '../../redux/reducers/Categories';
 
 const Home = () => {
   const user = useSelector(state => state.user);
@@ -27,6 +30,33 @@ const Home = () => {
 
   const dispatch = useDispatch();
   // dispatch(resetToInitialState());
+  // dispatch(resetCategories());
+
+  const categoryPageSize = 4;
+  const [categoryCurrentPage, setCategoryCurrentPage] = useState(1);
+  const [categoryRenderedList, setCategoryRenderedList] = useState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+
+  const pagination = (database, currentPage, pageSize) => {
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    if (startIndex >= database.length) {
+      return [];
+    }
+    return database.slice(startIndex, endIndex);
+  };
+
+  useEffect(() => {
+    setIsLoadingCategories(true);
+    const getInitialDataCategories = pagination(
+      categories.categories,
+      categoryCurrentPage,
+      categoryPageSize,
+    );
+    setCategoryRenderedList(getInitialDataCategories);
+    setCategoryCurrentPage(prev => prev + 1);
+    setIsLoadingCategories(false);
+  }, []);
 
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
@@ -63,7 +93,24 @@ const Home = () => {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            data={categories.categories}
+            onEndReachedThreshold={0.5}
+            onEndReached={() => {
+              if (isLoadingCategories) {
+                return;
+              }
+              setIsLoadingCategories(true);
+              const contentToAppend = pagination(
+                categories.categories,
+                categoryCurrentPage,
+                categoryPageSize,
+              );
+              if (contentToAppend.length > 0) {
+                setCategoryRenderedList(prev => [...prev, ...contentToAppend]);
+                setCategoryCurrentPage(prev => prev + 1);
+              }
+              setIsLoadingCategories(false);
+            }}
+            data={categoryRenderedList}
             renderItem={({item}) => (
               <View style={style.categoryItem} key={item.categoryId}>
                 <Tab
