@@ -1,4 +1,4 @@
 export const Routes = {
   Home: 'Home',
-  Profile: 'Profile',
+  SingleDonationItemScreen: 'SingleDonationItemScreen',
 };

@@ -25,7 +25,10 @@ import {
 } from '../../redux/reducers/Categories';
 // import {resetDonations} from '../../redux/reducers/Donations';
 
-const Home = () => {
+import {Routes} from '../../navigation/Routes';
+import {updateSelectedDonationItemId} from '../../redux/reducers/Donations';
+
+const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
@@ -141,7 +144,10 @@ const Home = () => {
               <View style={style.singleDonationItem} key={item.donationItemId}>
                 <SingleDonationItem
                   onPress={selectedDonationItemId => {
-                    console.log(selectedDonationItemId);
+                    dispatch(
+                      updateSelectedDonationItemId(selectedDonationItemId),
+                    );
+                    navigation.navigate(Routes.SingleDonationItemScreen);
                   }}
                   donationItemId={item.donationItemId}
                   badgeTitle={
