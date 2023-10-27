@@ -1,9 +1,10 @@
 import React from 'react';
-import {SafeAreaView, View, Pressable, Image, Text} from 'react-native';
+import {SafeAreaView, ScrollView, View, Image, Text} from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
+import BackButton from '../../components/BackButton/BackButton';
 import Badge from '../../components/Badge/Badge';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
@@ -17,14 +18,14 @@ const SingleDonationItemScreen = ({navigation}) => {
   const categories = useSelector(state => state.categories);
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
-      <View>
-        <Pressable
-          style={[style.section, style.goBack]}
-          onPress={() => {
-            navigation.goBack();
-          }}>
-          <Text>Go back</Text>
-        </Pressable>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[style.section, style.goBack]}>
+          <BackButton
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
+        </View>
         <Image
           style={[style.section, style.image]}
           source={{uri: donationItemInformation.image}}
@@ -45,7 +46,7 @@ const SingleDonationItemScreen = ({navigation}) => {
         <View style={style.section}>
           <Button title={'Donate'} />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
