@@ -140,28 +140,32 @@ const Home = ({navigation}) => {
         </View>
         {donationRenderedItems.length > 0 && (
           <View style={[style.section, style.donationItemsContainer]}>
-            {donationRenderedItems.map(item => (
-              <View style={style.singleDonationItem} key={item.donationItemId}>
-                <SingleDonationItem
-                  onPress={selectedDonationItemId => {
-                    dispatch(
-                      updateSelectedDonationItemId(selectedDonationItemId),
-                    );
-                    navigation.navigate(Routes.SingleDonationItemScreen);
-                  }}
-                  donationItemId={item.donationItemId}
-                  badgeTitle={
-                    categories.categories.filter(
-                      value =>
-                        value.categoryId === categories.selectedCategoryId,
-                    )[0].name
-                  }
-                  uri={item.image}
-                  donationTitle={item.name}
-                  price={parseFloat(item.price)}
-                />
-              </View>
-            ))}
+            {donationRenderedItems.map(item => {
+              const categoryInformation = categories.categories.find(
+                value => value.categoryId === categories.selectedCategoryId,
+              );
+              return (
+                <View
+                  style={style.singleDonationItem}
+                  key={item.donationItemId}>
+                  <SingleDonationItem
+                    onPress={selectedDonationItemId => {
+                      dispatch(
+                        updateSelectedDonationItemId(selectedDonationItemId),
+                      );
+                      navigation.navigate(Routes.SingleDonationItemScreen, {
+                        categoryInformation,
+                      });
+                    }}
+                    donationItemId={item.donationItemId}
+                    badgeTitle={categoryInformation.name}
+                    uri={item.image}
+                    donationTitle={item.name}
+                    price={parseFloat(item.price)}
+                  />
+                </View>
+              );
+            })}
           </View>
         )}
       </ScrollView>

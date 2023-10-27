@@ -11,42 +11,35 @@ import Button from '../../components/Button/Button';
 
 import {useSelector} from 'react-redux';
 
-const SingleDonationItemScreen = ({navigation}) => {
+const SingleDonationItemScreen = ({navigation, route}) => {
   const donationItemInformation = useSelector(
     state => state.donations.selectedDonationInformation,
   );
-  const categories = useSelector(state => state.categories);
+  const categoryInformation = route.params.categoryInformation;
+
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={[style.section, style.goBack]}>
-          <BackButton
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        </View>
+      <ScrollView style={style.container} showsVerticalScrollIndicator={false}>
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <Image
           style={[style.section, style.image]}
           source={{uri: donationItemInformation.image}}
         />
-        <View style={[style.section, style.badge]}>
-          <Badge
-            title={
-              categories.categories.filter(
-                value => value.categoryId === categories.selectedCategoryId,
-              )[0].name
-            }
-          />
+        <View style={style.badge}>
+          <Badge title={categoryInformation.name} />
         </View>
-        <View style={[style.section, style.textContainer]}>
-          <Header title={donationItemInformation.name} />
-          <Text style={style.text}>{donationItemInformation.description}</Text>
-        </View>
-        <View style={style.section}>
-          <Button title={'Donate'} />
-        </View>
+        <Header title={donationItemInformation.name} />
+        <Text style={style.description}>
+          {donationItemInformation.description}
+        </Text>
       </ScrollView>
+      <View style={style.button}>
+        <Button title={'Donate'} />
+      </View>
     </SafeAreaView>
   );
 };
