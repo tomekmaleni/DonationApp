@@ -9,8 +9,8 @@ const style = StyleSheet.create({
     zIndex: 1,
   },
   image: {
-    width: horizontalScale(155),
-    height: verticalScale(170),
+    width: horizontalScale(140),
+    height: verticalScale(155),
     borderRadius: horizontalScale(20),
   },
   donationInformation: {

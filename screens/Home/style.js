@@ -38,10 +38,13 @@ const style = StyleSheet.create({
     marginRight: horizontalScale(10),
   },
   donationItemsContainer: {
-    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+  },
+  singleDonationItem: {
+    maxWidth: '49%',
+    marginBottom: verticalScale(23),
   },
 });
 
