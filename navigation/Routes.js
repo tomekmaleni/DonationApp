@@ -1,6 +1,6 @@
 export const Routes = {
   Login: 'Login',
-  Register: 'Register',
+  Registration: 'Registration',
   Home: 'Home',
   SingleDonationItemScreen: 'SingleDonationItemScreen',
 };

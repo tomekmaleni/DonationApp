@@ -2,6 +2,10 @@ import {StyleSheet} from 'react-native';
 import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 
 const style = StyleSheet.create({
+  backButton: {
+    marginTop: verticalScale(7),
+    marginLeft: horizontalScale(14),
+  },
   container: {
     marginHorizontal: horizontalScale(24),
     flex: 1,
@@ -13,9 +17,6 @@ const style = StyleSheet.create({
   button: {
     marginTop: verticalScale(37),
     marginBottom: verticalScale(24),
-  },
-  registrationButton: {
-    alignItems: 'center',
   },
 });
 
