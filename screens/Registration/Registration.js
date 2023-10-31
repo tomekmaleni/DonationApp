@@ -9,6 +9,8 @@ import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
+import {createUser} from '../../api/user';
+
 const Registration = ({navigation}) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -51,7 +53,10 @@ const Registration = ({navigation}) => {
           />
         </View>
         <View style={style.button}>
-          <Button title={'Register'} />
+          <Button
+            title={'Register'}
+            onPress={async () => await createUser(fullName, email, password)}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
