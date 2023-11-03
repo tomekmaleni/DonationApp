@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
+import {getFontFamily} from '../../assets/fonts/helper';
 
 const style = StyleSheet.create({
   backButton: {
@@ -17,6 +22,18 @@ const style = StyleSheet.create({
   button: {
     marginTop: verticalScale(37),
     marginBottom: verticalScale(24),
+  },
+  error: {
+    color: '#F00',
+    fontFamily: getFontFamily('Inter'),
+    fontSize: scaleFontSize(16),
+    paddingTop: verticalScale(24),
+  },
+  success: {
+    color: '#28a745',
+    fontFamily: getFontFamily('Inter'),
+    fontSize: scaleFontSize(16),
+    paddingTop: verticalScale(24),
   },
 });
 
