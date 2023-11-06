@@ -79,7 +79,7 @@ const Home = ({navigation}) => {
         <View style={[style.section, style.header]}>
           <View>
             <Text style={style.headerIntroText}>Hello, </Text>
-            <Header title={user.firstName + ' ' + user.lastName[0] + '.👋'} />
+            <Header title={user.displayName + ' 👋'} />
           </View>
           <Image
             style={style.profileImage}
