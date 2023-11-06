@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
+import {
+  horizontalScale,
+  scaleFontSize,
+  verticalScale,
+} from '../../assets/styles/scaling';
+import {getFontFamily} from '../../assets/fonts/helper';
 
 const style = StyleSheet.create({
   container: {
@@ -16,6 +21,18 @@ const style = StyleSheet.create({
   },
   registrationButton: {
     alignItems: 'center',
+  },
+  error: {
+    color: '#F00',
+    fontFamily: getFontFamily('Inter'),
+    fontSize: scaleFontSize(16),
+    paddingTop: verticalScale(24),
+  },
+  success: {
+    color: '#28a745',
+    fontFamily: getFontFamily('Inter'),
+    fontSize: scaleFontSize(16),
+    paddingTop: verticalScale(24),
   },
 });
 

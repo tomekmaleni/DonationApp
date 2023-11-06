@@ -14,3 +14,29 @@ export const createUser = async (fullName, email, password) => {
     return {error: 'Something went wrong with your request.'};
   }
 };
+
+export const loginUser = async (email, password) => {
+  try {
+    const response = await auth().signInWithEmailAndPassword(email, password);
+    const token = await response.user.getIdToken();
+    return {
+      status: true,
+      data: {
+        displayName: response.user.displayName,
+        email: response.user.email,
+        token,
+      },
+    };
+  } catch (error) {
+    if (error.code === 'auth/invalid-email') {
+      return {status: false, error: 'Please enter a valid email address.'};
+    } else if (error.code === 'auth/user-not-found') {
+      return {status: false, error: 'User is not found.'};
+    } else if (error.code === 'auth/wrong-password') {
+      return {status: false, error: 'Plese enter a correct password.'};
+    } else if (error.code === 'auth/invalid-login') {
+      return {status: false, error: 'Invalid login.'};
+    }
+    return {status: false, error: error.message};
+  }
+};
