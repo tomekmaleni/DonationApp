@@ -18,15 +18,17 @@ import Tab from '../../components/Tab/Tab';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 
 import {useSelector, useDispatch} from 'react-redux';
-// import {resetToInitialState, updateFirstName} from '../../redux/reducers/User';
+import {resetToInitialState} from '../../redux/reducers/User';
 import {
   // resetCategories,
   updateSelectedCategoryId,
 } from '../../redux/reducers/Categories';
+
 // import {resetDonations} from '../../redux/reducers/Donations';
+import {updateSelectedDonationItemId} from '../../redux/reducers/Donations';
 
 import {Routes} from '../../navigation/Routes';
-import {updateSelectedDonationItemId} from '../../redux/reducers/Donations';
+import {logOut} from '../../api/user';
 
 const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
@@ -81,11 +83,20 @@ const Home = ({navigation}) => {
             <Text style={style.headerIntroText}>Hello, </Text>
             <Header title={user.displayName + ' 👋'} />
           </View>
-          <Image
-            style={style.profileImage}
-            source={{uri: user.profileImage}}
-            resizeMode={'contain'}
-          />
+          <View>
+            <Image
+              style={style.profileImage}
+              source={{uri: user.profileImage}}
+              resizeMode={'contain'}
+            />
+            <Pressable
+              onPress={async () => {
+                dispatch(resetToInitialState());
+                await logOut();
+              }}>
+              <Header title={'Logout'} type={3} color={'#156CF7'} />
+            </Pressable>
+          </View>
         </View>
         <View style={style.section}>
           <Search
