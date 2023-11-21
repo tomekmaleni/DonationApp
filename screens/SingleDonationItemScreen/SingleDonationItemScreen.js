@@ -10,6 +10,7 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 
 import {useSelector} from 'react-redux';
+import {Routes} from '../../navigation/Routes';
 
 const SingleDonationItemScreen = ({navigation, route}) => {
   const donationItemInformation = useSelector(
@@ -38,7 +39,12 @@ const SingleDonationItemScreen = ({navigation, route}) => {
         </Text>
       </ScrollView>
       <View style={style.button}>
-        <Button title={'Donate'} />
+        <Button
+          title={'Donate'}
+          onPress={() => {
+            navigation.navigate(Routes.Payment);
+          }}
+        />
       </View>
     </SafeAreaView>
   );
