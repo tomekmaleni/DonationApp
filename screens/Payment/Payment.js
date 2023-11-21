@@ -11,6 +11,9 @@ import Button from '../../components/Button/Button';
 
 import {useSelector} from 'react-redux';
 
+import {StripeProvider, CardForm} from '@stripe/stripe-react-native';
+import {STRIPE_PUBLISABLE_KEY} from '../../Constants/App';
+
 const Payment = ({navigation, route}) => {
   const donationItemInformation = useSelector(
     state => state.donations.selectedDonationInformation,
@@ -31,49 +34,14 @@ const Payment = ({navigation, route}) => {
             navigation.goBack();
           }}
         />
-        <Header title={'My Donation'} />
+        <Header title={'Making Donation'} />
         <Text style={style.donationAmountDescription}>
           You are about to donate ${donationItemInformation.price}
         </Text>
-        <Header title={'My Card Payment'} />
-        <View style={style.input}>
-          <Input
-            label={'Card Holder Name'}
-            placeholder={'John Smith'}
-            onChangeText={value => setFullName(value)}
-          />
-        </View>
-        <View style={style.input}>
-          <Input
-            label={'Card Number'}
-            placeholder={'e.g 2524 1950 5100'}
-            keyboardType={'numeric'}
-            textContentType={'creditCardNumber'}
-            onChangeText={value => setEmail(value)}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '50%',
-          }}>
-          <View style={style.input}>
-            <Input
-              label={'Expired Date'}
-              placeholder={'ex. 06/24'}
-              keyboardType={'numeric'}
-              onChangeText={value => setExpiredDate(value)}
-            />
-          </View>
-          <View style={style.input}>
-            <Input
-              label={'CVV'}
-              placeholder={'ex. 599'}
-              keyboardType={'numeric'}
-              onChangeText={value => setCvvNumber(value)}
-            />
-          </View>
+        <View>
+          <StripeProvider publishableKey={STRIPE_PUBLISABLE_KEY}>
+            <CardForm style={style.cardForm} />
+          </StripeProvider>
         </View>
       </ScrollView>
       <View style={style.button}>

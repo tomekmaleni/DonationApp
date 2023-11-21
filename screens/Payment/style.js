@@ -19,6 +19,10 @@ const style = StyleSheet.create({
   donationAmountDescription: {
     marginVertical: verticalScale(12),
   },
+  cardForm: {
+    marginTop: verticalScale(12),
+    height: '100%',
+  },
   input: {
     marginTop: verticalScale(24),
   },
