@@ -7,14 +7,16 @@ import {
 import {getFontFamily} from '../../assets/fonts/helper';
 
 const style = StyleSheet.create({
-  backButton: {
-    marginTop: verticalScale(7),
-    marginLeft: horizontalScale(14),
-  },
   container: {
     marginHorizontal: horizontalScale(24),
     flex: 1,
     justifyContent: 'flex-start',
+  },
+  backButton: {
+    marginTop: verticalScale(7),
+  },
+  header: {
+    marginTop: verticalScale(12),
   },
   donationAmountDescription: {
     marginVertical: verticalScale(12),
@@ -23,14 +25,12 @@ const style = StyleSheet.create({
     marginTop: verticalScale(12),
     height: '100%',
   },
-  input: {
-    marginTop: verticalScale(24),
-  },
   button: {
     marginTop: verticalScale(37),
     marginBottom: verticalScale(24),
     marginHorizontal: horizontalScale(24),
   },
+
   error: {
     color: '#F00',
     fontFamily: getFontFamily('Inter'),
