@@ -15,7 +15,7 @@ import {
   CardForm,
   useConfirmPayment,
 } from '@stripe/stripe-react-native';
-import {STRIPE_PUBLISABLE_KEY} from '../../Constants/App';
+import {STRIPE_PUBLISHABLE_KEY} from '../../Constants/App';
 
 const Payment = ({navigation, route}) => {
   const donationItemInformation = useSelector(
@@ -25,9 +25,11 @@ const Payment = ({navigation, route}) => {
   const [isReady, setIsReady] = useState(false);
   const {confirmPayment, loading} = useConfirmPayment();
   const user = useSelector(state => state.user);
+  const API_URL =
+    'https://us-central1-stripepaymentsidtomekmaleni.cloudfunctions.net/stripePayment';
 
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch('http://10.0.2.2:3000/create-payment-intent', {
+    const response = await fetch(API_URL + '/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +78,7 @@ const Payment = ({navigation, route}) => {
           You are about to donate ${donationItemInformation.price}
         </Text>
         <View>
-          <StripeProvider publishableKey={STRIPE_PUBLISABLE_KEY}>
+          <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}>
             <CardForm
               style={style.cardForm}
               onFormComplete={() => {
