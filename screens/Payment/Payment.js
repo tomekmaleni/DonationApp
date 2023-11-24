@@ -64,13 +64,11 @@ const Payment = ({navigation, route}) => {
       <ScrollView
         contentContainerStyle={style.container}
         showsVerticalScrollIndicator={false}>
-        <View style={style.backButton}>
-          <BackButton
-            onPress={() => {
-              navigation.goBack();
-            }}
-          />
-        </View>
+        <BackButton
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <View style={style.header}>
           <Header title={'Making Donation'} />
         </View>

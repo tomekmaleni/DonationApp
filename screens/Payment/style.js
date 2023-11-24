@@ -11,15 +11,13 @@ const style = StyleSheet.create({
     marginHorizontal: horizontalScale(24),
     flex: 1,
     justifyContent: 'flex-start',
-  },
-  backButton: {
-    marginTop: verticalScale(7),
+    marginTop: verticalScale(10),
   },
   header: {
     marginTop: verticalScale(12),
   },
   donationAmountDescription: {
-    marginVertical: verticalScale(12),
+    marginTop: verticalScale(12),
   },
   cardForm: {
     marginTop: verticalScale(12),
